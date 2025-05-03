@@ -5,12 +5,13 @@ for (var i = 0; i < 7; i++) {
         if (audio) {
             audio.play();
         }
-
+        buttonAnimation(buttonInnerHTML);
     });
 }
 document.addEventListener("keydown", function (event) {
     var audi = makeSound(event.key);
     audi.play();
+    buttonAnimation(event.key);
 })
 
 function makeSound(key) {
@@ -46,4 +47,12 @@ function makeSound(key) {
             break;
     }
     return aud;
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    },100)
 }
